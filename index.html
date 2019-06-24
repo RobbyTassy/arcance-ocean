@@ -104,6 +104,7 @@
           function addPermission(){
             var permissionString =  "<select id='report-permissions-2'> <option value='manager'>Report Manager</option> <option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select>"
             document.getElementById("demo-3").innerHTML = permissionString;
+
             var permissionId = document.getElementById("report-permissions-2").value;
              if (permissionId == "manager") {
                console.log(permissionId)
@@ -129,7 +130,7 @@
                 "<p>Move Folders" + " " + dropdown + "</p> "
               } else if (x == "collab") {
                 x =
-                "<p>Create <b>not</b> create Templates" + " " + dropdown + "</p> " +
+                "<p>Can <b>not</b> create Templates" + " " + dropdown + "</p> " +
                 "<p>Can <b>not</b> create folders" + " " + dropdown + "</p> "
 
               } else {
