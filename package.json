@@ -4,6 +4,7 @@
   "description": "project one",
   "main": "index.js",
   "dependencies": {
+    "launchdarkly-js-client-sdk": "^2.12.0",
     "popper.js": "^1.14.6"
   },
   "repository": {
