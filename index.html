@@ -74,7 +74,7 @@
            <option value="reviewer">Reviewer</option>
            </select>,
 
-           <span id="demo-3"></span><span id="demo-4"><a href="#" onClick="addPermission()"> (who is also) </a> </span>I can...
+           <span id="demo-3"></span><span id="demo-4"><a href="#" onClick="addPermission()"> (who is also)</a> </span>I can...
         </p>
 
         <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="testList()">Submit </a></p>
@@ -101,43 +101,87 @@
 
         <script>
           function addPermission(){
-            var permissionString = "<select id='report-permissions-2'> <option value='manager'>Report Manager</option> <option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select>, "
-            var permissionStringTwo = "<select id='report-permissions-3'> <option value='manager'>Report Manager</option> <option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select> "
 
-            document.getElementById("demo-3").innerHTML = permissionString;
-            document.getElementById("demo-4").innerHTML = permissionStringTwo;
+            var projectPermissionSelected = document.getElementById("project-permissions").value;
+            var reportPermissionSelectedOne = document.getElementById("report-permissions").value;
+
+            var NoManagerPermissionString = "<select id='report-permissions-2'> <option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select>, "
+            var NoAssigneePermissionString = "<select id='report-permissions-2'> <option value='manager'>Report Manager</option> <option value='reviewer'>Reviewer</option></select>, "
+            var NoReviewerPermissionString = "<select id='report-permissions-2'> <option value='manager'>Report Manager</option> <option value='assignee'>Assignee</option> </select>, "
+
+
+            if (reportPermissionSelectedOne == "manager") {
+              document.getElementById("demo-3").innerHTML = NoManagerPermissionString;
+            } else if (reportPermissionSelectedOne == "assignee") {
+              document.getElementById("demo-3").innerHTML = NoAssigneePermissionString;
+            } else if (reportPermissionSelectedOne == "reviewer") {
+              document.getElementById("demo-3").innerHTML = NoReviewerPermissionString;
+            } else {
+              console.log("error")
+            }
+
+            var NoManagerPermissionStringTwo = "<select id='report-permissions-2'> <option value='null'>None</option><option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select>, "
+            var NoAssigneePermissionStringTwo = "<select id='report-permissions-2'> <option value='null'>None</option> <option value='manager'>Report Manager</option> <option value='reviewer'>Reviewer</option></select>, "
+            var NoReviewerPermissionStringTwo = "<select id='report-permissions-2'> <option value='null'>None</option> <option value='manager'>Report Manager</option> <option value='assignee'>Assignee</option> </select>, "
+
+            if (reportPermissionSelectedOne == "manager") {
+              document.getElementById("demo-4").innerHTML = NoManagerPermissionStringTwo;
+            } else if (reportPermissionSelectedOne == "assignee") {
+              document.getElementById("demo-4").innerHTML = NoAssigneePermissionStringTwo;
+            } else if (reportPermissionSelectedOne == "reviewer") {
+              document.getElementById("demo-4").innerHTML = NoReviewerPermissionStringTwo;
+            } else {
+              console.log("error")
+            }
 
 
 
+            //
+            //
+            // var reportPermissionSelectedTwo = document.getElementById("report-permissions-2").value;
+            // var reportPermissionSelectedThree = document.getElementById("report-permissions-3").value;
+
+
+
+            // console.log(projectPermissionSelected)
+            // console.log(reportPermissionSelectedOne)
+            // console.log(reportPermissionSelectedTwo)
+            // console.log(reportPermissionSelectedThree)
           }
+
+
 
 
           function testList() {
             var dropdown = "<select><option id='testStatus' value='null'>Selection </option><option value='pass'>Pass</option> <option value='fail'>Fail</option>  <option value='retest'>Retest</option> <option value='blocked'>Blocked</option></select>";
-            var x = document.getElementById("project-permissions").value;
-              if (x == "admin") {
-                x =
+            var firstDropdown = document.getElementById("project-permissions").value;
+            var secondDropdown = document.getElementById("report-permissions").value;
+            // var thirdDropdown = document.getElementById("report-permissions-2").value;
+
+
+              if (firstDropdown == "admin") {
+                firstDropdown =
                 "<p>Create Templates" + " " + dropdown + "</p> " +
                 "<p>Create Folders" + " " + dropdown + "</p> " +
                 "<p>Delete Folders" + " " + dropdown + "</p> " +
                 "<p>Move Folders" + " " + dropdown + "</p> "
-              } else if (x == "power collab") {
-                x =
+              } else if (firstDropdown == "power collab") {
+                firstDropdown =
                 "<p>Create Templates" + " " + dropdown + "</p> " +
                 "<p>Create Folders" + " " + dropdown + "</p> " +
                 "<p>Delete Folders" + " " + dropdown + "</p> " +
                 "<p>Move Folders" + " " + dropdown + "</p> "
-              } else if (x == "collab") {
-                x =
+              } else if (firstDropdown == "collab") {
+                firstDropdown =
                 "<p>Can <b>not</b> create Templates" + " " + dropdown + "</p> " +
                 "<p>Can <b>not</b> create folders" + " " + dropdown + "</p> "
 
               } else {
                 console.log("null")
               }
-            var y = document.getElementById("report-permissions").value;
-              if (y == "manager") {
-                y =
+
+              if (secondDropdown == "manager") {
+                secondDropdown =
                 "<p>Edit Template Permissions" + " " + dropdown + "</p> " +
                 "</p>View Template(s)" + " " + dropdown + "</p> " +
                 "</p>Edit Template(s) details" + " " + dropdown + "</p> " +
@@ -145,7 +189,7 @@
                 "</p>Restore Template(s)" + " " + dropdown + "</p> " +
                 "</p>Delete Template(s)" + " " + dropdown + "</p> "
               } else if (y == "assignee") {
-                y =
+                secondDropdown =
                 "<p>Create Reports" + " " + dropdown + "</p> " +
                 "</p>View my Draft Report" + " " + dropdown + "</p> " +
                 "</p>Delete my Draft Report" + " " + dropdown + "</p> " +
@@ -155,7 +199,7 @@
                 "</p>View my Archived Report" + " " + dropdown + "</p> " +
                 "</p>Restore my Archived Report" + " " + dropdown + "</p> "
               } else if (y == "reviewer") {
-                y =
+                secondDropdown =
                 "<p>Can <b>not</b> create a Report" + " " + dropdown + "</p> " +
                 "<p>View all Submitted Reports" + " " + dropdown + "</p> " +
                 "</p>Archive a Submitted Report" + " " + dropdown + "</p> " +
@@ -164,9 +208,11 @@
               } else {
                 console.log("null")
               }
-            document.getElementById("demo").innerHTML = x;
-            document.getElementById("demo-2").innerHTML =  y;
-            // document.getElementById("test-dropdown").innerHTML = dropdown;
+            document.getElementById("demo").innerHTML = firstDropdown;
+            document.getElementById("demo-2").innerHTML =  secondDropdown;
+            // document.getElementById("demo-2").innerHTML =  thirdDropdown;
+            // document.getElementById("demo-2").innerHTML =  fourthDropdown;
+
 
           }
         </script>
