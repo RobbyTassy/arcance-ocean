@@ -77,7 +77,7 @@
            <span id="demo-3"></span><span id="demo-4"><a href="#" onClick="addPermission()"> (who is also)</a> </span>I can...
         </p>
 
-        <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="testList()">Submit </a></p>
+        <p><a id="submit-button" class="btn btn-primary btn-lg" href="#" role="button" onclick="testList()">Submit </a></p>
       </div>
     </div>
 
@@ -88,6 +88,8 @@
           <h2></h2>
           <div id="demo"></div>
           <div id="demo-2"></div>
+          <div id="demo-5"></div>
+          <div id="demo-6"></div>
 
         </div>
         <div class="col-md-2">
@@ -104,6 +106,8 @@
 
             var projectPermissionSelected = document.getElementById("project-permissions").value;
             var reportPermissionSelectedOne = document.getElementById("report-permissions").value;
+            // var reportPermissionSelectedThree = document.getElementById("report-permissions-2").value;
+            // var reportPermissionSelectedFour = document.getElementById("report-permissions-3").value;
 
             var NoManagerPermissionString = "<select id='report-permissions-2'> <option value='assignee'>Assignee</option> <option value='reviewer'>Reviewer</option></select>, "
             var NoAssigneePermissionString = "<select id='report-permissions-2'> <option value='manager'>Report Manager</option> <option value='reviewer'>Reviewer</option></select>, "
@@ -134,29 +138,18 @@
               console.log("error")
             }
 
-
-
-            //
-            //
             // var reportPermissionSelectedTwo = document.getElementById("report-permissions-2").value;
             // var reportPermissionSelectedThree = document.getElementById("report-permissions-3").value;
 
-
-
-            // console.log(projectPermissionSelected)
-            // console.log(reportPermissionSelectedOne)
-            // console.log(reportPermissionSelectedTwo)
-            // console.log(reportPermissionSelectedThree)
           }
-
-
 
 
           function testList() {
             var dropdown = "<select><option id='testStatus' value='null'>Selection </option><option value='pass'>Pass</option> <option value='fail'>Fail</option>  <option value='retest'>Retest</option> <option value='blocked'>Blocked</option></select>";
             var firstDropdown = document.getElementById("project-permissions").value;
             var secondDropdown = document.getElementById("report-permissions").value;
-            // var thirdDropdown = document.getElementById("report-permissions-2").value;
+            var thirdDropdown = document.getElementById("report-permissions-2");
+            var fourthDropdown = document.getElementById("report-permissions-3");
 
 
               if (firstDropdown == "admin") {
@@ -188,7 +181,7 @@
                 "</p>Archive Template(s)" + " " + dropdown + "</p> " +
                 "</p>Restore Template(s)" + " " + dropdown + "</p> " +
                 "</p>Delete Template(s)" + " " + dropdown + "</p> "
-              } else if (y == "assignee") {
+              } else if (secondDropdown == "assignee") {
                 secondDropdown =
                 "<p>Create Reports" + " " + dropdown + "</p> " +
                 "</p>View my Draft Report" + " " + dropdown + "</p> " +
@@ -198,7 +191,7 @@
                 "</p>Archive my Submitted Report" + " " + dropdown + "</p> " +
                 "</p>View my Archived Report" + " " + dropdown + "</p> " +
                 "</p>Restore my Archived Report" + " " + dropdown + "</p> "
-              } else if (y == "reviewer") {
+              } else if (secondDropdown == "reviewer") {
                 secondDropdown =
                 "<p>Can <b>not</b> create a Report" + " " + dropdown + "</p> " +
                 "<p>View all Submitted Reports" + " " + dropdown + "</p> " +
@@ -208,10 +201,18 @@
               } else {
                 console.log("null")
               }
+
+
+              if (thirdDropdown == null) {
+                  thirdDropdown = " "
+              } else if (thirdDropdown == "assignee") {
+                "<p>Create Reports" + " " + dropdown + "</p> "
+              }
+
             document.getElementById("demo").innerHTML = firstDropdown;
             document.getElementById("demo-2").innerHTML =  secondDropdown;
-            // document.getElementById("demo-2").innerHTML =  thirdDropdown;
-            // document.getElementById("demo-2").innerHTML =  fourthDropdown;
+            // document.getElementById("demo-5").innerHTML =  thirdDropdown;
+            // document.getElementById("demo-6").innerHTML =  fourthDropdown;
 
 
           }
